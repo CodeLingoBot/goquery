@@ -391,7 +391,7 @@ func recurUpBool(ns Nodes, f func(e *Node) bool) {
 func (ns Nodes) AddClass(a string) {
 }
 
-// Get the value of an attribute for the first element in the set of matched elements.
+// Attr gets the value of an attribute for the first element in the set of matched elements.
 // or
 // Set one or more attributes for the set of matched elements.
 func (ns Nodes) Attr(a ...string) string {
@@ -449,12 +449,12 @@ func (ns Nodes) First() Nodes {
 	return ns
 }
 
-// Get the descendants of each element in the current set of matched elements, filtered by a selector, GoQuery object, or element.
+// Find gets the descendants of each element in the current set of matched elements, filtered by a selector, GoQuery object, or element.
 func (ns *Nodes) Find(selector string) Nodes {
 	return find(ns, selector)
 }
 
-// Check the current matched set of elements against a selector/*, element, or jQuery object*/ and return true if at least one of these elements matches the given arguments.
+// Is checks the current matched set of elements against a selector/*, element, or jQuery object*/ and return true if at least one of these elements matches the given arguments.
 func (ns Nodes) Is(selector string) bool {
 	sel := parseSelector(selector)
 	if len(sel) == 1 {
@@ -476,7 +476,7 @@ func (ns Nodes) Last() Nodes {
 	return Nodes{ns[l-1]}
 }
 
-// Returns the number of elements in the GoQuery object.
+// Length returns the number of elements in the GoQuery object.
 func (ns Nodes) Length() int {
 	return len(ns)
 }
@@ -511,7 +511,7 @@ func (ns Nodes) HasClass(cl string) bool {
 	return false
 }
 
-// Get the HTML contents of the first element in the set of matched elements.
+// Html gets the HTML contents of the first element in the set of matched elements.
 func (ns Nodes) Html() string {
 	return _html(ns, false)
 }
@@ -522,7 +522,7 @@ func (ns Nodes) HtmlAll() []string {
 	return htmlAll(ns, false)
 }
 
-// Remove elements from the set of matched elements.
+// Not removes elements from the set of matched elements.
 func (ns Nodes) Not(crit interface{}) Nodes {
 	if s, ok := crit.(string); ok {
 		return filterBySelector(ns, s, true)
@@ -532,7 +532,7 @@ func (ns Nodes) Not(crit interface{}) Nodes {
 	return Nodes{}
 }
 
-// Get the parent of each element in the current set of matched elements, optionally filtered by a selector.
+// Parent gets the parent of each element in the current set of matched elements, optionally filtered by a selector.
 func (ns Nodes) Parent(a ...string) Nodes {
 	sl := Nodes{}
 	sel := []selector{}
@@ -552,7 +552,7 @@ func (ns Nodes) Parent(a ...string) Nodes {
 	return sl
 }
 
-// Get the ancestors of each element in the current set of matched elements, optionally filtered by a selector.
+// Parents gets the ancestors of each element in the current set of matched elements, optionally filtered by a selector.
 func (ns Nodes) Parents(a ...string) Nodes {
 	sl := Nodes{}
 	sel := []selector{}
@@ -575,7 +575,7 @@ func (ns Nodes) Parents(a ...string) Nodes {
 	return sl
 }
 
-// Get the ancestors of each element in the current set of matched elements, up to but not including the element matched by the selector, DOM node, or jQuery object.
+// ParentsUntil gets the ancestors of each element in the current set of matched elements, up to but not including the element matched by the selector, DOM node, or jQuery object.
 func (ns Nodes) ParentsUntil(a string) Nodes {
 	sl := Nodes{}
 	sel := parseSelector(a)
@@ -613,7 +613,7 @@ func (ns Nodes) Remove() {
 
 }
 
-// Remove an attribute from each element in the set of matched elements.
+// RemoveAttr removes an attribute from each element in the set of matched elements.
 func (ns Nodes) RemoveAttr(key string) Nodes {
 	removeAttr(ns, key)
 	return ns
@@ -643,7 +643,7 @@ func text(buf *bytes.Buffer, n *Node) {
 	}
 }
 
-// Get the combined text contents of each element in the set of matched elements, including their descendants.
+// Text gets the combined text contents of each element in the set of matched elements, including their descendants.
 func (ns Nodes) Text() string {
 	buf := &bytes.Buffer{}
 
@@ -654,7 +654,7 @@ func (ns Nodes) Text() string {
 	return buf.String()
 }
 
-// Get the current value of the first element in the set of matched elements.
+// Val gets the current value of the first element in the set of matched elements.
 // or
 // Set the value of each element in the set of matched elements.
 func (ns Nodes) Val(a ...string) string {
